@@ -906,9 +906,11 @@ if (practicePage) {
 
     let currentQuestion = null;
 
-    let questionsAttempted = 0;
-    let correctAnswers = 0;
+let questionsAttempted = 0;
+let correctAnswers = 0;
 
+let currentQuestionNumber = 0;
+const totalQuestions = 10;
 
     /* ------------------------------------------
        RANDOM NUMBER
@@ -929,7 +931,12 @@ if (practicePage) {
        ------------------------------------------ */
 
     function generateQuestion() {
+currentQuestionNumber++;
 
+if (currentQuestionNumber > totalQuestions) {
+    showFinalScore();
+    return;
+}
         const difficulty =
             document.getElementById("difficulty").value;
 
@@ -1157,7 +1164,11 @@ for (let i = 0; i < articleCount; i++) {
             marshall: "Marshall–Edgeworth Price Index"
 
         };
+document.getElementById("questionNumber").textContent =
+    currentQuestionNumber;
 
+document.getElementById("practiceProgressBar").style.width =
+    `${(currentQuestionNumber / totalQuestions) * 100}%`;
 
         questionTitle.textContent =
             methodNames[currentQuestion.method];
@@ -1536,5 +1547,43 @@ for (let i = 0; i < articleCount; i++) {
         "click",
         generateQuestion
     );
+function showFinalScore() {
 
+    document.getElementById("questionSection").style.display = "none";
+
+    document.getElementById("finalScoreSection").style.display = "block";
+
+    document.getElementById("progressSection").style.display = "none";
+
+    document.getElementById("finalScore").textContent =
+        `${correctAnswers} / ${totalQuestions}`;
+
+    const finalAccuracy =
+        (correctAnswers / totalQuestions) * 100;
+
+    document.getElementById("finalAccuracy").textContent =
+        `${finalAccuracy.toFixed(0)}% Accuracy`;
+
+    if (finalAccuracy === 100) {
+
+        document.getElementById("finalMessage").textContent =
+            "Perfect score! 🔥 You got every question correct.";
+
+    }
+
+    else if (finalAccuracy >= 70) {
+
+        document.getElementById("finalMessage").textContent =
+            "Great work! Keep practicing to improve even further.";
+
+    }
+
+    else {
+
+        document.getElementById("finalMessage").textContent =
+            "Keep practicing. Review the formulas in the Learn section and try again.";
+
+    }
+
+}
 }
