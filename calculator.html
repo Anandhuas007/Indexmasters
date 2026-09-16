@@ -10,7 +10,37 @@
 </head>
 
 <body>
+<!-- CUSTOM ALERT POPUP -->
+<div id="alertOverlay" class="alert-overlay">
 
+    <div class="alert-box">
+
+        <div class="alert-icon">
+            ⚠️
+        </div>
+
+        <div class="alert-content">
+
+            <h3 id="alertTitle">
+                Check your input
+            </h3>
+
+            <p id="alertMessage">
+                Something needs your attention.
+            </p>
+
+        </div>
+
+        <button
+            class="alert-close"
+            onclick="closeAlert()"
+        >
+            OK
+        </button>
+
+    </div>
+
+</div>
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-container">
