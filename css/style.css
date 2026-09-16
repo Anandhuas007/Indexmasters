@@ -2559,3 +2559,160 @@ body.dark .chart-track {
     }
 
 }
+/* ==========================================
+   LEARN PAGE — HERO UPGRADE
+   ========================================== */
+
+.learn-hero {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 110px 20px 90px;
+    text-align: center;
+}
+
+/* Soft glow behind the hero */
+
+.learn-hero::before {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(91, 77, 245, 0.12);
+    filter: blur(100px);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.learn-hero .eyebrow {
+    margin-bottom: 18px;
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.learn-hero h1 {
+    margin: 0 auto 22px;
+    max-width: 900px;
+    font-size: clamp(44px, 6vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -2px;
+}
+
+.learn-hero h1::after {
+    content: "";
+    display: block;
+    width: 90px;
+    height: 4px;
+    margin: 25px auto 0;
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+.learn-hero > p:last-child {
+    max-width: 680px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+
+/* ==========================================
+   LEARN SECTION SPACING
+   ========================================== */
+
+.learn-section {
+    width: min(1050px, 90%);
+    margin: 0 auto;
+    padding: 75px 0;
+}
+
+.learn-section .section-heading {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.learn-section .section-heading .eyebrow {
+    margin-bottom: 8px;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.learn-section .section-heading h2 {
+    margin: 0;
+    font-size: clamp(28px, 4vw, 42px);
+    letter-spacing: -1px;
+}
+
+
+/* ==========================================
+   INTRODUCTION CARD
+   ========================================== */
+
+.learn-card {
+    padding: 38px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+}
+
+.learn-card p {
+    color: var(--muted);
+    line-height: 1.85;
+    font-size: 16px;
+}
+
+.learn-card p + p {
+    margin-top: 16px;
+}
+
+
+/* ==========================================
+   DARK MODE
+   ========================================== */
+
+body.dark .learn-card {
+    background: #111827;
+    border-color: #273244;
+}
+
+body.dark .learn-hero::before {
+    background: rgba(91, 77, 245, 0.16);
+}
+
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 600px) {
+
+    .learn-hero {
+        padding: 80px 18px 60px;
+    }
+
+    .learn-hero h1 {
+        font-size: 42px;
+        letter-spacing: -1px;
+    }
+
+    .learn-hero > p:last-child {
+        font-size: 16px;
+    }
+
+    .learn-section {
+        width: 92%;
+        padding: 55px 0;
+    }
+
+    .learn-card {
+        padding: 25px;
+    }
+
+}
