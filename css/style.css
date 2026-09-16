@@ -2123,3 +2123,178 @@ body.dark .chart-track {
     }
 
 }
+/* ==========================================
+   SAVED CALCULATIONS
+   ========================================== */
+
+.saved-calculations {
+    margin-top: 70px;
+    padding: 40px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+}
+
+.saved-calculations .section-heading {
+    margin-bottom: 30px;
+}
+
+.saved-calculations .section-heading h2 {
+    margin-bottom: 8px;
+}
+
+.saved-calculations .section-heading p:last-child {
+    color: var(--muted);
+}
+
+
+/* SAVED CARD */
+
+.saved-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+
+    padding: 24px;
+
+    margin-bottom: 16px;
+
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.saved-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary);
+}
+
+
+/* CARD INFORMATION */
+
+.saved-card-info {
+    flex: 1;
+}
+
+.saved-card-info h3 {
+    margin: 0 0 5px;
+    font-size: 18px;
+}
+
+.saved-date {
+    margin: 0 0 18px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+
+/* RESULT BOXES */
+
+.saved-results {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.saved-results span {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    padding: 12px 14px;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.saved-results strong {
+    font-size: 17px;
+    color: var(--text);
+}
+
+
+/* DELETE BUTTON */
+
+.delete-saved-btn {
+    flex-shrink: 0;
+
+    padding: 10px 16px;
+
+    border: 1px solid #ef4444;
+    border-radius: 10px;
+
+    background: transparent;
+    color: #ef4444;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.delete-saved-btn:hover {
+    background: #ef4444;
+    color: white;
+}
+
+
+/* EMPTY HISTORY */
+
+.empty-saved {
+    padding: 35px;
+    text-align: center;
+
+    border: 1px dashed var(--border);
+    border-radius: 16px;
+}
+
+.empty-saved p {
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.empty-saved small {
+    color: var(--muted);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .saved-calculations {
+        padding: 25px 18px;
+        margin-top: 45px;
+    }
+
+    .saved-card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .saved-results {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .delete-saved-btn {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .saved-results {
+        grid-template-columns: 1fr;
+    }
+
+}
