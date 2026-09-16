@@ -140,17 +140,39 @@ function getArticleData() {
 
 
         // Check for missing values
-        if (
-            isNaN(p0) ||
-            isNaN(p1) ||
-            isNaN(q0) ||
-            isNaN(q1)
-        ) {
+if (
+    isNaN(p0) ||
+    isNaN(p1) ||
+    isNaN(q0) ||
+    isNaN(q1)
+) {
 
-            valid = false;
+    alert(
+        `Please complete all fields for Article ${index + 1}.`
+    );
 
-            return;
-        }
+    valid = false;
+
+    return;
+}
+
+
+// Check for zero or negative values
+if (
+    p0 <= 0 ||
+    p1 <= 0 ||
+    q0 <= 0 ||
+    q1 <= 0
+) {
+
+    alert(
+        `Article ${index + 1}: prices and quantities must be greater than zero.`
+    );
+
+    valid = false;
+
+    return;
+}
 
 
         articles.push({
