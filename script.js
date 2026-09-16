@@ -739,3 +739,41 @@ function closeAlert() {
         .classList.remove("show");
 
 }
+// ==========================================
+// SAVE CALCULATION
+// ==========================================
+
+function saveCalculation() {
+
+    const articles = getArticleData();
+
+    if (!articles) {
+        return;
+    }
+
+    const calculation = {
+        date: new Date().toLocaleString(),
+        articles: articles,
+        results: {
+            laspeyres: document.getElementById("laspeyresResult").textContent,
+            paasche: document.getElementById("paascheResult").textContent,
+            fisher: document.getElementById("fisherResult").textContent,
+            marshall: document.getElementById("marshallResult").textContent
+        }
+    };
+
+    let savedCalculations =
+        JSON.parse(localStorage.getItem("indexMasterCalculations")) || [];
+
+    savedCalculations.push(calculation);
+
+    localStorage.setItem(
+        "indexMasterCalculations",
+        JSON.stringify(savedCalculations)
+    );
+
+    showAlert(
+        "Your calculation has been saved successfully.",
+        "Saved!"
+    );
+}
