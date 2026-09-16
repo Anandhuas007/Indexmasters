@@ -911,7 +911,7 @@ let correctAnswers = 0;
 
 let currentQuestionNumber = 0;
 const totalQuestions = 10;
-
+let answerChecked = false;
     /* ------------------------------------------
        RANDOM NUMBER
        ------------------------------------------ */
@@ -1223,7 +1223,7 @@ document.getElementById("practiceProgressBar").style.width =
 
 
         document.getElementById("answerInput").value = "";
-
+answerChecked = false;
         document.getElementById("answerResult").style.display = "none";
 
         document.getElementById("solutionArea").style.display = "none";
@@ -1258,7 +1258,12 @@ document.getElementById("practiceProgressBar").style.width =
         }
 
 
-        questionsAttempted++;
+       if (answerChecked) {
+    return;
+}
+
+answerChecked = true;
+questionsAttempted++;
 
 
         const difference =
@@ -1547,6 +1552,30 @@ document.getElementById("practiceProgressBar").style.width =
         "click",
         generateQuestion
     );
+    document.getElementById(
+    "restartPracticeBtn"
+).addEventListener(
+    "click",
+    function () {
+
+        currentQuestionNumber = 0;
+        questionsAttempted = 0;
+        correctAnswers = 0;
+        answerChecked = false;
+
+        updateProgress();
+
+        document.getElementById(
+            "finalScoreSection"
+        ).style.display = "none";
+
+        document.getElementById(
+            "progressSection"
+        ).style.display = "block";
+
+        generateQuestion();
+    }
+);
 function showFinalScore() {
 
     document.getElementById("questionSection").style.display = "none";
