@@ -769,15 +769,17 @@ function saveCalculation() {
 
     savedCalculations.push(calculation);
 
-    localStorage.setItem(
-        "indexMasterCalculations",
-        JSON.stringify(savedCalculations)
-    );
+  localStorage.setItem(
+    "indexMasterCalculations",
+    JSON.stringify(savedCalculations)
+);
 
-    showAlert(
-        "Your calculation has been saved successfully.",
-        "Saved!"
-    );
+loadSavedCalculations();
+
+showAlert(
+    "Your calculation has been saved successfully.",
+    "Saved!"
+);
 }
 // ==========================================
 // LOAD SAVED CALCULATIONS
