@@ -722,3 +722,26 @@ function updateComparison(
         .style.width =
         `${(marshall / maximum) * 100}%`;
 }
+// ==========================================
+// CUSTOM ALERT POPUP
+// ==========================================
+
+function showAlert(message, title = "Check your input") {
+
+    document.getElementById("alertTitle")
+        .textContent = title;
+
+    document.getElementById("alertMessage")
+        .textContent = message;
+
+    document.getElementById("alertOverlay")
+        .classList.add("show");
+}
+
+
+function closeAlert() {
+
+    document.getElementById("alertOverlay")
+        .classList.remove("show");
+
+}
