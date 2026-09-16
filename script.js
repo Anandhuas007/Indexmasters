@@ -779,3 +779,98 @@ function saveCalculation() {
         "Saved!"
     );
 }
+// ==========================================
+// LOAD SAVED CALCULATIONS
+// ==========================================
+
+function loadSavedCalculations() {
+
+    const container =
+        document.getElementById("savedCalculationsList");
+
+    if (!container) {
+        return;
+    }
+
+    const savedCalculations =
+        JSON.parse(
+            localStorage.getItem("indexMasterCalculations")
+        ) || [];
+
+    // Nothing saved yet
+    if (savedCalculations.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty-saved">
+                <p>📂 No saved calculations yet.</p>
+                <small>
+                    Calculate an index number and save it to see it here.
+                </small>
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML = "";
+
+    savedCalculations.forEach((calculation, index) => {
+
+        const card = document.createElement("div");
+
+        card.className = "saved-card";
+
+        card.innerHTML = `
+            <div class="saved-card-info">
+
+                <h3>Calculation ${index + 1}</h3>
+
+                <p class="saved-date">
+                    ${calculation.date}
+                </p>
+
+                <div class="saved-results">
+
+                    <span>
+                        Laspeyres:
+                        <strong>${calculation.results.laspeyres}</strong>
+                    </span>
+
+                    <span>
+                        Paasche:
+                        <strong>${calculation.results.paasche}</strong>
+                    </span>
+
+                    <span>
+                        Fisher:
+                        <strong>${calculation.results.fisher}</strong>
+                    </span>
+
+                    <span>
+                        Marshall–Edgeworth:
+                        <strong>${calculation.results.marshall}</strong>
+                    </span>
+
+                </div>
+
+            </div>
+
+            <button
+                class="delete-saved-btn"
+                onclick="deleteSavedCalculation(${index})"
+            >
+                🗑 Delete
+            </button>
+        `;
+
+        container.appendChild(card);
+
+    });
+}
+// ==========================================
+// LOAD SAVED CALCULATIONS WHEN PAGE OPENS
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+    loadSavedCalculations();
+});
