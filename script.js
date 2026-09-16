@@ -970,59 +970,65 @@ if (practicePage) {
         }
 
 
-        /* Generate articles */
+       /* Generate articles */
 
-        const articles = [];
+const articles = [];
 
-        for (let i = 0; i < articleCount; i++) {
+for (let i = 0; i < articleCount; i++) {
 
-            let p0;
-            let p1;
-            let q0;
-            let q1;
-
-
-            if (difficulty === "easy") {
-
-                p0 = randomNumber(5, 15, 2);
-                p1 = randomNumber(5, 15, 2);
-
-                q0 = randomNumber(2, 10);
-                q1 = randomNumber(2, 10);
-
-            }
+    let p0;
+    let p1;
+    let q0;
+    let q1;
 
 
-            else if (difficulty === "medium") {
+    /* EASY */
 
-                p0 = randomNumber(5, 30, 2);
-                p1 = randomNumber(5, 30, 2);
+    if (difficulty === "easy") {
 
-                q0 = randomNumber(2, 20);
-                q1 = randomNumber(2, 20);
+        p0 = randomNumber(5, 15, 0);
+        p1 = randomNumber(5, 15, 0);
 
-            }
+        q0 = randomNumber(2, 10, 0);
+        q1 = randomNumber(2, 10, 0);
 
-
-            else {
-
-                p0 = randomNumber(10, 100, 2);
-                p1 = randomNumber(10, 100, 2);
-
-                q0 = randomNumber(5, 50);
-                q1 = randomNumber(5, 50);
-
-            }
+    }
 
 
-            articles.push({
-                p0,
-                p1,
-                q0,
-                q1
-            });
+    /* MEDIUM */
 
-        }
+    else if (difficulty === "medium") {
+
+        p0 = randomNumber(5, 30, 2);
+        p1 = randomNumber(5, 30, 2);
+
+        q0 = randomNumber(5, 25, 0);
+        q1 = randomNumber(5, 25, 0);
+
+    }
+
+
+    /* HARD */
+
+    else {
+
+        p0 = randomNumber(10, 100, 2);
+        p1 = randomNumber(10, 100, 2);
+
+        q0 = randomNumber(10, 75, 0);
+        q1 = randomNumber(10, 75, 0);
+
+    }
+
+
+    articles.push({
+        p0,
+        p1,
+        q0,
+        q1
+    });
+
+}
 
 
         /* Calculate answer */
