@@ -333,23 +333,123 @@
 
 
             <!-- RESULT ACTIONS -->
-            <div class="result-actions">
+            <!-- VISUAL COMPARISON -->
+<div class="comparison-card">
 
-                <button
-                    class="primary-btn"
-                    onclick="copyResults()"
-                >
-                    📋 Copy Results
-                </button>
+    <div class="card-header">
 
-                <button
-                    class="secondary-btn"
-                    onclick="window.print()"
-                >
-                    🖨 Print
-                </button>
+        <div>
+            <p class="eyebrow">COMPARE</p>
 
+            <h2>Index Comparison</h2>
+
+            <p>
+                See how the four methods compare.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="comparison-chart">
+
+        <div class="chart-item">
+
+            <div class="chart-label">
+                <span>Laspeyres</span>
+                <strong id="chartLaspeyres">0</strong>
             </div>
+
+            <div class="chart-track">
+                <div
+                    id="barLaspeyres"
+                    class="chart-bar"
+                ></div>
+            </div>
+
+        </div>
+
+
+        <div class="chart-item">
+
+            <div class="chart-label">
+                <span>Paasche</span>
+                <strong id="chartPaasche">0</strong>
+            </div>
+
+            <div class="chart-track">
+                <div
+                    id="barPaasche"
+                    class="chart-bar"
+                ></div>
+            </div>
+
+        </div>
+
+
+        <div class="chart-item">
+
+            <div class="chart-label">
+                <span>Fisher</span>
+                <strong id="chartFisher">0</strong>
+            </div>
+
+            <div class="chart-track">
+                <div
+                    id="barFisher"
+                    class="chart-bar"
+                ></div>
+            </div>
+
+        </div>
+
+
+        <div class="chart-item">
+
+            <div class="chart-label">
+                <span>Marshall–Edgeworth</span>
+                <strong id="chartMarshall">0</strong>
+            </div>
+
+            <div class="chart-track">
+                <div
+                    id="barMarshall"
+                    class="chart-bar"
+                ></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- RESULT ACTIONS -->
+
+<div class="result-actions">
+
+    <button
+        class="primary-btn"
+        onclick="copyResults()"
+    >
+        📋 Copy Full Solution
+    </button>
+
+    <button
+        class="secondary-btn"
+        onclick="saveCalculation()"
+    >
+        💾 Save Calculation
+    </button>
+
+    <button
+        class="secondary-btn"
+        onclick="window.print()"
+    >
+        🖨 Print
+    </button>
+
+</div>
 
         </section>
 
