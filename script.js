@@ -362,7 +362,16 @@ function calculateIndex() {
         marshall
     );
 
+// --------------------------------------
+// UPDATE VISUAL COMPARISON
+// --------------------------------------
 
+updateComparison(
+    laspeyres,
+    paasche,
+    fisher,
+    marshall
+);
     // --------------------------------------
     // SHOW RESULTS
     // --------------------------------------
