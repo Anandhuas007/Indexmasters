@@ -178,13 +178,20 @@
 
         <div class="section-heading">
 
-            <p class="eyebrow">
-                QUESTION
-            </p>
+           <p class="eyebrow">
+    QUESTION <span id="questionNumber">1</span> OF 10
+</p>
 
-            <h2 id="questionTitle">
-                Calculate the Index Number
-            </h2>
+<div class="practice-progress">
+    <div
+        class="practice-progress-bar"
+        id="practiceProgressBar"
+    ></div>
+</div>
+
+<h2 id="questionTitle">
+    Calculate the Index Number
+</h2>
 
             <p id="questionText">
                 Your question will appear here.
@@ -321,7 +328,51 @@
 
     </section>
 
+<!-- FINAL SCORE -->
 
+<section
+    class="practice-section"
+    id="finalScoreSection"
+    style="display: none;"
+>
+
+    <div class="final-score-card">
+
+        <p class="eyebrow">
+            TEST COMPLETE
+        </p>
+
+        <h2>
+            Your Results
+        </h2>
+
+        <div class="final-score">
+
+            <strong id="finalScore">
+                0 / 10
+            </strong>
+
+            <span id="finalAccuracy">
+                0% Accuracy
+            </span>
+
+        </div>
+
+        <p id="finalMessage">
+            Keep practicing and try again.
+        </p>
+
+        <button
+            type="button"
+            class="primary-btn"
+            id="restartPracticeBtn"
+        >
+            Try Again
+        </button>
+
+    </div>
+
+</section>
     <!-- PROGRESS -->
 
     <section
