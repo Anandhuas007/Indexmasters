@@ -186,14 +186,9 @@ if (
     });
 
 
-    if (!valid) {
-
-       showAlert(
-    "Please enter P₀, P₁, Q₀ and Q₁ for every article."
-);
-
-        return null;
-    }
+   if (!valid) {
+    return null;
+}
 
 
     return articles;
