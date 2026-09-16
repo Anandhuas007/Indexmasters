@@ -2983,3 +2983,110 @@ body.dark .notation-card:hover {
     }
 
 }
+/* ==========================================
+   LEARN PAGE — INDEX METHOD CARDS
+   ========================================== */
+
+.learn-section .learn-card {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Method card accent */
+
+.learn-section .learn-card h3 {
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+/* Method explanation */
+
+.learn-section .learn-card p {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* ==========================================
+   FORMULA BOX
+   ========================================== */
+
+.formula-box {
+    position: relative;
+
+    margin: 28px 0;
+    padding: 28px 30px;
+
+    text-align: center;
+
+    background: rgba(91, 77, 245, 0.08);
+
+    border: 1px solid rgba(91, 77, 245, 0.35);
+
+    border-radius: 18px;
+
+    color: var(--text);
+
+    font-size: 25px;
+    font-weight: 700;
+
+    line-height: 1.6;
+
+    box-shadow:
+        inset 0 0 30px rgba(91, 77, 245, 0.04);
+}
+
+
+/* Formula symbols */
+
+.formula-box span {
+    display: inline-block;
+
+    padding: 0 7px;
+
+    color: var(--primary);
+}
+
+
+/* Formula hover */
+
+.learn-card:hover .formula-box {
+    border-color: rgba(91, 77, 245, 0.55);
+}
+
+
+/* ==========================================
+   METHOD LABEL
+   ========================================== */
+
+.learn-section .section-heading .eyebrow {
+    text-transform: uppercase;
+}
+
+
+/* ==========================================
+   DARK MODE
+   ========================================== */
+
+body.dark .formula-box {
+    background: rgba(115, 87, 255, 0.10);
+
+    border-color: rgba(115, 87, 255, 0.35);
+}
+
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 600px) {
+
+    .formula-box {
+        padding: 22px 15px;
+        font-size: 20px;
+
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+}
