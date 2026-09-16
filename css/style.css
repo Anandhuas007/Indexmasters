@@ -2298,3 +2298,264 @@ body.dark .chart-track {
     }
 
 }
+/* ==========================================
+   LEARN PAGE
+   ========================================== */
+
+/* LEARN HERO */
+
+.learn-hero {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 100px 20px 70px;
+    text-align: center;
+}
+
+.learn-hero h1 {
+    margin: 12px 0 18px;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.05;
+}
+
+.learn-hero p:last-child {
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+
+/* LEARN SECTIONS */
+
+.learn-section {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+    padding: 70px 0;
+}
+
+.learn-section .section-heading {
+    margin-bottom: 35px;
+}
+
+
+/* LEARN CARDS */
+
+.learn-card {
+    padding: 30px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    line-height: 1.7;
+}
+
+.learn-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.learn-card p {
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.learn-card p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* CARD GRID */
+
+.learn-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.learn-grid .learn-card {
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.learn-grid .learn-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+}
+
+
+/* NOTATION */
+
+.notation-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.notation-card {
+    padding: 25px 20px;
+    text-align: center;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.notation-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary);
+}
+
+.notation-card strong {
+    display: block;
+    margin-bottom: 10px;
+
+    font-size: 30px;
+    color: var(--primary);
+}
+
+.notation-card span {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+
+/* FORMULA */
+
+.formula-box {
+    margin: 25px 0;
+    padding: 25px;
+
+    text-align: center;
+
+    background: rgba(115, 87, 255, 0.08);
+    border: 1px solid rgba(115, 87, 255, 0.3);
+    border-radius: 16px;
+
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.formula-box span {
+    display: inline-block;
+    padding: 0 8px;
+}
+
+
+/* COMPARISON TABLE */
+
+.comparison-table-wrapper {
+    overflow-x: auto;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 18px 22px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.comparison-table th {
+    font-weight: 700;
+    color: var(--text);
+    background: rgba(115, 87, 255, 0.08);
+}
+
+.comparison-table td {
+    color: var(--muted);
+}
+
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* LEARN CTA */
+
+.learn-cta {
+    width: min(900px, 92%);
+    margin: 60px auto 100px;
+    padding: 60px 30px;
+
+    text-align: center;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+}
+
+.learn-cta h2 {
+    margin: 12px 0;
+    font-size: clamp(28px, 4vw, 42px);
+}
+
+.learn-cta p:not(.eyebrow) {
+    max-width: 600px;
+    margin: 0 auto 25px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .learn-hero {
+        padding: 70px 20px 45px;
+    }
+
+    .learn-section {
+        padding: 50px 0;
+    }
+
+    .learn-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .notation-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .learn-hero h1 {
+        font-size: 38px;
+    }
+
+    .learn-hero p:last-child {
+        font-size: 16px;
+    }
+
+    .learn-card {
+        padding: 22px;
+    }
+
+    .notation-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .formula-box {
+        font-size: 19px;
+        overflow-x: auto;
+    }
+
+    .learn-cta {
+        padding: 40px 20px;
+    }
+
+}
