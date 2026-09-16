@@ -874,3 +874,23 @@ function loadSavedCalculations() {
 document.addEventListener("DOMContentLoaded", function () {
     loadSavedCalculations();
 });
+// ==========================================
+// DELETE SAVED CALCULATION
+// ==========================================
+
+function deleteSavedCalculation(index) {
+
+    let savedCalculations =
+        JSON.parse(
+            localStorage.getItem("indexMasterCalculations")
+        ) || [];
+
+    savedCalculations.splice(index, 1);
+
+    localStorage.setItem(
+        "indexMasterCalculations",
+        JSON.stringify(savedCalculations)
+    );
+
+    loadSavedCalculations();
+}
