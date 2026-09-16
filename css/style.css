@@ -1867,3 +1867,45 @@ body.dark .solution-step .formula {
     }
 
 }
+/* ==========================================
+   CALCULATOR PAGE FIXES
+   ========================================== */
+
+/* Prevent navbar from covering calculator heading */
+
+.calculator-header {
+    padding-top: 120px;
+}
+
+
+/* Make theme button consistent */
+
+.theme-toggle {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border-radius: 10px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    background: transparent;
+    color: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Better calculator header spacing */
+
+.calculator-header h1 {
+    margin-top: 15px;
+}
+
+
+/* Keep calculator content below the navbar */
+
+.calculator-container {
+    position: relative;
+    z-index: 1;
+}
