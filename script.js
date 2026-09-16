@@ -896,3 +896,639 @@ function deleteSavedCalculation(index) {
 
     loadSavedCalculations();
 }
+/* ==========================================
+   PRACTICE SYSTEM
+   ========================================== */
+
+const practicePage = document.getElementById("startPracticeBtn");
+
+if (practicePage) {
+
+    let currentQuestion = null;
+
+    let questionsAttempted = 0;
+    let correctAnswers = 0;
+
+
+    /* ------------------------------------------
+       RANDOM NUMBER
+       ------------------------------------------ */
+
+    function randomNumber(min, max, decimals = 0) {
+
+        const number =
+            Math.random() * (max - min) + min;
+
+        return Number(number.toFixed(decimals));
+
+    }
+
+
+    /* ------------------------------------------
+       GENERATE QUESTION
+       ------------------------------------------ */
+
+    function generateQuestion() {
+
+        const difficulty =
+            document.getElementById("difficulty").value;
+
+        const selectedMethod =
+            document.getElementById("practiceMethod").value;
+
+
+        let method = selectedMethod;
+
+
+        /* Random method */
+
+        if (method === "random") {
+
+            const methods = [
+                "laspeyres",
+                "paasche",
+                "fisher",
+                "marshall"
+            ];
+
+            method =
+                methods[Math.floor(Math.random() * methods.length)];
+
+        }
+
+
+        /* Number of articles */
+
+        let articleCount = 3;
+
+        if (difficulty === "medium") {
+            articleCount = 4;
+        }
+
+        if (difficulty === "hard") {
+            articleCount = 5;
+        }
+
+
+        /* Generate articles */
+
+        const articles = [];
+
+        for (let i = 0; i < articleCount; i++) {
+
+            let p0;
+            let p1;
+            let q0;
+            let q1;
+
+
+            if (difficulty === "easy") {
+
+                p0 = randomNumber(5, 15, 2);
+                p1 = randomNumber(5, 15, 2);
+
+                q0 = randomNumber(2, 10);
+                q1 = randomNumber(2, 10);
+
+            }
+
+
+            else if (difficulty === "medium") {
+
+                p0 = randomNumber(5, 30, 2);
+                p1 = randomNumber(5, 30, 2);
+
+                q0 = randomNumber(2, 20);
+                q1 = randomNumber(2, 20);
+
+            }
+
+
+            else {
+
+                p0 = randomNumber(10, 100, 2);
+                p1 = randomNumber(10, 100, 2);
+
+                q0 = randomNumber(5, 50);
+                q1 = randomNumber(5, 50);
+
+            }
+
+
+            articles.push({
+                p0,
+                p1,
+                q0,
+                q1
+            });
+
+        }
+
+
+        /* Calculate answer */
+
+        let answer = 0;
+
+
+        let sumP1Q0 = 0;
+        let sumP0Q0 = 0;
+
+        let sumP1Q1 = 0;
+        let sumP0Q1 = 0;
+
+        let sumP1QQ = 0;
+        let sumP0QQ = 0;
+
+
+        articles.forEach(article => {
+
+            sumP1Q0 +=
+                article.p1 * article.q0;
+
+            sumP0Q0 +=
+                article.p0 * article.q0;
+
+            sumP1Q1 +=
+                article.p1 * article.q1;
+
+            sumP0Q1 +=
+                article.p0 * article.q1;
+
+            sumP1QQ +=
+                article.p1 * (article.q0 + article.q1);
+
+            sumP0QQ +=
+                article.p0 * (article.q0 + article.q1);
+
+        });
+
+
+        if (method === "laspeyres") {
+
+            answer =
+                (sumP1Q0 / sumP0Q0) * 100;
+
+        }
+
+
+        if (method === "paasche") {
+
+            answer =
+                (sumP1Q1 / sumP0Q1) * 100;
+
+        }
+
+
+        if (method === "fisher") {
+
+            const laspeyres =
+                sumP1Q0 / sumP0Q0;
+
+            const paasche =
+                sumP1Q1 / sumP0Q1;
+
+            answer =
+                Math.sqrt(
+                    laspeyres * paasche
+                ) * 100;
+
+        }
+
+
+        if (method === "marshall") {
+
+            answer =
+                (sumP1QQ / sumP0QQ) * 100;
+
+        }
+
+
+        currentQuestion = {
+            articles,
+            method,
+            answer,
+            sumP1Q0,
+            sumP0Q0,
+            sumP1Q1,
+            sumP0Q1,
+            sumP1QQ,
+            sumP0QQ
+        };
+
+
+        displayQuestion();
+
+    }
+
+
+    /* ------------------------------------------
+       DISPLAY QUESTION
+       ------------------------------------------ */
+
+    function displayQuestion() {
+
+        const questionSection =
+            document.getElementById("questionSection");
+
+        const tableBody =
+            document.getElementById("questionTableBody");
+
+        const questionTitle =
+            document.getElementById("questionTitle");
+
+        const questionText =
+            document.getElementById("questionText");
+
+
+        const methodNames = {
+
+            laspeyres: "Laspeyres Price Index",
+
+            paasche: "Paasche Price Index",
+
+            fisher: "Fisher's Ideal Price Index",
+
+            marshall: "Marshall–Edgeworth Price Index"
+
+        };
+
+
+        questionTitle.textContent =
+            methodNames[currentQuestion.method];
+
+
+        questionText.textContent =
+            `Calculate the ${methodNames[currentQuestion.method]} using the data below. Give your answer to 2 decimal places.`;
+
+
+        tableBody.innerHTML = "";
+
+
+        currentQuestion.articles.forEach(
+            (article, index) => {
+
+                const row =
+                    document.createElement("tr");
+
+
+                row.innerHTML = `
+
+                    <td>
+                        Article ${index + 1}
+                    </td>
+
+                    <td>
+                        ${article.p0}
+                    </td>
+
+                    <td>
+                        ${article.p1}
+                    </td>
+
+                    <td>
+                        ${article.q0}
+                    </td>
+
+                    <td>
+                        ${article.q1}
+                    </td>
+
+                `;
+
+
+                tableBody.appendChild(row);
+
+            }
+        );
+
+
+        questionSection.style.display = "block";
+
+
+        document.getElementById("answerInput").value = "";
+
+        document.getElementById("answerResult").style.display = "none";
+
+        document.getElementById("solutionArea").style.display = "none";
+
+
+        questionSection.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* ------------------------------------------
+       CHECK ANSWER
+       ------------------------------------------ */
+
+    function checkAnswer() {
+
+        const input =
+            document.getElementById("answerInput");
+
+        const userAnswer =
+            Number(input.value);
+
+
+        if (!input.value) {
+
+            alert("Please enter an answer.");
+
+            return;
+
+        }
+
+
+        questionsAttempted++;
+
+
+        const difference =
+            Math.abs(
+                userAnswer -
+                currentQuestion.answer
+            );
+
+
+        const isCorrect =
+            difference <= 0.05;
+
+
+        const resultBox =
+            document.getElementById("answerResult");
+
+        const resultTitle =
+            document.getElementById("resultTitle");
+
+        const resultMessage =
+            document.getElementById("resultMessage");
+
+
+        if (isCorrect) {
+
+            correctAnswers++;
+
+            resultTitle.textContent =
+                "Correct! 🎉";
+
+            resultMessage.textContent =
+                `Your answer of ${userAnswer.toFixed(2)} is correct.`;
+
+        }
+
+
+        else {
+
+            resultTitle.textContent =
+                "Not quite.";
+
+            resultMessage.textContent =
+                `Your answer was ${userAnswer.toFixed(2)}. The correct answer is ${currentQuestion.answer.toFixed(2)}.`;
+
+        }
+
+
+        resultBox.style.display = "block";
+
+
+        updateProgress();
+
+    }
+
+
+    /* ------------------------------------------
+       SHOW SOLUTION
+       ------------------------------------------ */
+
+    function showSolution() {
+
+        if (!currentQuestion) return;
+
+
+        const solutionArea =
+            document.getElementById("solutionArea");
+
+        const solutionContent =
+            document.getElementById("solutionContent");
+
+
+        const q =
+            currentQuestion;
+
+
+        let html = "";
+
+
+        if (q.method === "laspeyres") {
+
+            html = `
+
+                <p>
+                    First calculate ΣP₁Q₀ and ΣP₀Q₀.
+                </p>
+
+                <div class="solution-formula">
+                    ΣP₁Q₀ = ${q.sumP1Q0.toFixed(2)}
+                </div>
+
+                <div class="solution-formula">
+                    ΣP₀Q₀ = ${q.sumP0Q0.toFixed(2)}
+                </div>
+
+                <p>
+                    Apply the Laspeyres formula:
+                </p>
+
+                <div class="solution-formula">
+                    L = (${q.sumP1Q0.toFixed(2)} /
+                    ${q.sumP0Q0.toFixed(2)}) × 100
+                    = ${q.answer.toFixed(2)}
+                </div>
+
+            `;
+
+        }
+
+
+        else if (q.method === "paasche") {
+
+            html = `
+
+                <p>
+                    First calculate ΣP₁Q₁ and ΣP₀Q₁.
+                </p>
+
+                <div class="solution-formula">
+                    ΣP₁Q₁ = ${q.sumP1Q1.toFixed(2)}
+                </div>
+
+                <div class="solution-formula">
+                    ΣP₀Q₁ = ${q.sumP0Q1.toFixed(2)}
+                </div>
+
+                <p>
+                    Apply the Paasche formula:
+                </p>
+
+                <div class="solution-formula">
+                    P = (${q.sumP1Q1.toFixed(2)} /
+                    ${q.sumP0Q1.toFixed(2)}) × 100
+                    = ${q.answer.toFixed(2)}
+                </div>
+
+            `;
+
+        }
+
+
+        else if (q.method === "fisher") {
+
+            const L =
+                (q.sumP1Q0 / q.sumP0Q0) * 100;
+
+            const P =
+                (q.sumP1Q1 / q.sumP0Q1) * 100;
+
+
+            html = `
+
+                <p>
+                    First calculate the Laspeyres and
+                    Paasche indices.
+                </p>
+
+                <div class="solution-formula">
+                    L = ${L.toFixed(2)}
+                </div>
+
+                <div class="solution-formula">
+                    P = ${P.toFixed(2)}
+                </div>
+
+                <p>
+                    Then apply Fisher's formula:
+                </p>
+
+                <div class="solution-formula">
+                    F = √(L × P)
+                    = √(${L.toFixed(2)} × ${P.toFixed(2)})
+                    = ${q.answer.toFixed(2)}
+                </div>
+
+            `;
+
+        }
+
+
+        else {
+
+            html = `
+
+                <p>
+                    First calculate ΣP₁(Q₀ + Q₁)
+                    and ΣP₀(Q₀ + Q₁).
+                </p>
+
+                <div class="solution-formula">
+                    ΣP₁(Q₀ + Q₁) =
+                    ${q.sumP1QQ.toFixed(2)}
+                </div>
+
+                <div class="solution-formula">
+                    ΣP₀(Q₀ + Q₁) =
+                    ${q.sumP0QQ.toFixed(2)}
+                </div>
+
+                <p>
+                    Apply the Marshall–Edgeworth formula:
+                </p>
+
+                <div class="solution-formula">
+                    ME =
+                    (${q.sumP1QQ.toFixed(2)} /
+                    ${q.sumP0QQ.toFixed(2)})
+                    × 100
+                    = ${q.answer.toFixed(2)}
+                </div>
+
+            `;
+
+        }
+
+
+        solutionContent.innerHTML = html;
+
+        solutionArea.style.display = "block";
+
+    }
+
+
+    /* ------------------------------------------
+       PROGRESS
+       ------------------------------------------ */
+
+    function updateProgress() {
+
+        document.getElementById(
+            "questionsAttempted"
+        ).textContent =
+            questionsAttempted;
+
+
+        document.getElementById(
+            "correctAnswers"
+        ).textContent =
+            correctAnswers;
+
+
+        const accuracy =
+            questionsAttempted === 0
+                ? 0
+                : (correctAnswers / questionsAttempted) * 100;
+
+
+        document.getElementById(
+            "accuracy"
+        ).textContent =
+            `${accuracy.toFixed(0)}%`;
+
+    }
+
+
+    /* ------------------------------------------
+       BUTTON EVENTS
+       ------------------------------------------ */
+
+    document.getElementById(
+        "startPracticeBtn"
+    ).addEventListener(
+        "click",
+        generateQuestion
+    );
+
+
+    document.getElementById(
+        "checkAnswerBtn"
+    ).addEventListener(
+        "click",
+        checkAnswer
+    );
+
+
+    document.getElementById(
+        "showSolutionBtn"
+    ).addEventListener(
+        "click",
+        showSolution
+    );
+
+
+    document.getElementById(
+        "nextQuestionBtn"
+    ).addEventListener(
+        "click",
+        generateQuestion
+    );
+
+}
