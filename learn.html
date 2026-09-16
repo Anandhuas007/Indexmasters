@@ -567,7 +567,23 @@
 
     <!-- THEME -->
 
-    <script>
+ <script>
+
+    function toggleTheme() {
+
+        document.body.classList.toggle("dark");
+
+        localStorage.setItem(
+            "theme",
+            document.body.classList.contains("dark")
+                ? "dark"
+                : "light"
+        );
+
+    }
+
+
+    window.onload = function () {
 
         const savedTheme =
             localStorage.getItem("theme");
@@ -576,7 +592,9 @@
             document.body.classList.add("dark");
         }
 
-    </script>
+    };
+
+</script>
 
 </body>
 
