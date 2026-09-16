@@ -753,7 +753,9 @@ function saveCalculation() {
 
     const calculation = {
         date: new Date().toLocaleString(),
+
         articles: articles,
+
         results: {
             laspeyres: document.getElementById("laspeyresResult").textContent,
             paasche: document.getElementById("paascheResult").textContent,
