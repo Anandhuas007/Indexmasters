@@ -81,7 +81,7 @@ function removeArticle(button) {
     // Don't allow the user to remove the final row
     if (tbody.rows.length <= 1) {
 
-        alert("You need at least one article.");
+showAlert("You need at least one article.");
 
         return;
     }
@@ -147,9 +147,9 @@ if (
     isNaN(q1)
 ) {
 
-    alert(
-        `Please complete all fields for Article ${index + 1}.`
-    );
+    showAlert(
+    `Please complete all fields for Article ${index + 1}.`
+);
 
     valid = false;
 
@@ -165,9 +165,9 @@ if (
     q1 <= 0
 ) {
 
-    alert(
-        `Article ${index + 1}: prices and quantities must be greater than zero.`
-    );
+    showAlert(
+    `Article ${index + 1}: prices and quantities must be greater than zero.`
+);
 
     valid = false;
 
@@ -188,9 +188,9 @@ if (
 
     if (!valid) {
 
-        alert(
-            "Please enter P₀, P₁, Q₀ and Q₁ for every article."
-        );
+       showAlert(
+    "Please enter P₀, P₁, Q₀ and Q₁ for every article."
+);
 
         return null;
     }
@@ -658,13 +658,12 @@ Marshall–Edgeworth: ${marshall}
     navigator.clipboard.writeText(text)
         .then(() => {
 
-            alert("Results copied!");
+           showAlert("Results copied!", "Success!");
 
         })
         .catch(() => {
 
-            alert("Unable to copy results.");
-
+           showAlert("Unable to copy results.", "Copy failed");
         });
 
 }
