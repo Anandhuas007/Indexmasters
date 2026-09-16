@@ -2858,3 +2858,128 @@ body.dark .learn-grid .learn-card:hover {
     }
 
 }
+/* ==========================================
+   LEARN PAGE — NOTATION CARDS
+   ========================================== */
+
+.notation-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.notation-card {
+    position: relative;
+    padding: 32px 20px;
+    text-align: center;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+/* Purple glow */
+
+.notation-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    top: -45px;
+    right: -45px;
+
+    background: rgba(91, 77, 245, 0.12);
+
+    border-radius: 50%;
+
+    filter: blur(22px);
+
+    pointer-events: none;
+}
+
+/* Symbol */
+
+.notation-card strong {
+    position: relative;
+
+    display: block;
+
+    margin-bottom: 12px;
+
+    font-size: 38px;
+    line-height: 1;
+
+    color: var(--primary);
+
+    letter-spacing: -1px;
+}
+
+/* Description */
+
+.notation-card span {
+    position: relative;
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Hover */
+
+.notation-card:hover {
+    transform: translateY(-6px);
+
+    border-color: rgba(91, 77, 245, 0.55);
+
+    box-shadow:
+        0 18px 45px rgba(20, 25, 50, 0.14);
+}
+
+/* Dark mode */
+
+body.dark .notation-card {
+    background: #111827;
+    border-color: #273244;
+}
+
+body.dark .notation-card:hover {
+    border-color: rgba(115, 87, 255, 0.7);
+
+    box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.35);
+}
+
+/* Tablet */
+
+@media (max-width: 800px) {
+
+    .notation-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+
+    .notation-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
