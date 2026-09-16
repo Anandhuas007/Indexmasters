@@ -2024,16 +2024,17 @@ body.dark .chart-track {
 }
 
 .alert-box {
-    width: min(450px, 90%);
+    width: min(520px, 90%);
     background: #111827;
     border: 1px solid #374151;
     border-radius: 18px;
 
     padding: 28px;
 
-    display: flex;
-    align-items: flex-start;
-    gap: 18px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 18px;
+    row-gap: 18px;
 
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
 
@@ -2062,7 +2063,8 @@ body.dark .chart-track {
 }
 
 .alert-close {
-    margin-top: 18px;
+    grid-column: 2;
+    justify-self: end;
 
     padding: 10px 22px;
 
