@@ -1,1 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Calculate | IndexMaster</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                Index<span>Master</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="calculator.html" class="active">Calculate</a>
+                <a href="learn.html">Learn</a>
+                <a href="practice.html">Practice</a>
+            </div>
+
+            <button class="theme-toggle" onclick="toggleTheme()">
+                🌙
+            </button>
+
+        </div>
+    </nav>
+
+
+    <!-- PAGE HEADER -->
+    <section class="calculator-header">
+
+        <div class="container">
+
+            <p class="eyebrow">INDEX NUMBER CALCULATOR</p>
+
+            <h1>
+                Calculate your
+                <span>Index Number</span>
+            </h1>
+
+            <p>
+                Enter your price and quantity data and let IndexMaster
+                calculate the major index-number methods for you.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CALCULATOR -->
+    <main class="calculator-container">
+
+        <!-- INPUT CARD -->
+        <section class="calculator-card">
+
+            <div class="card-header">
+                <div>
+                    <h2>Enter your data</h2>
+                    <p>
+                        Enter the base year and current year values
+                        for each article.
+                    </p>
+                </div>
+
+                <button class="secondary-btn" onclick="addArticle()">
+                    + Add Article
+                </button>
+            </div>
+
+
+            <!-- TABLE -->
+            <div class="table-wrapper">
+
+                <table id="dataTable">
+
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>P₀</th>
+                            <th>P₁</th>
+                            <th>Q₀</th>
+                            <th>Q₁</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="articleRows">
+
+                        <tr>
+                            <td>1</td>
+
+                            <td>
+                                <input
+                                    type="number"
+                                    class="data-input p0"
+                                    placeholder="P₀"
+                                    step="any"
+                                >
+                            </td>
+
+                            <td>
+                                <input
+                                    type="number"
+                                    class="data-input p1"
+                                    placeholder="P₁"
+                                    step="any"
+                                >
+                            </td>
+
+                            <td>
+                                <input
+                                    type="number"
+                                    class="data-input q0"
+                                    placeholder="Q₀"
+                                    step="any"
+                                >
+                            </td>
+
+                            <td>
+                                <input
+                                    type="number"
+                                    class="data-input q1"
+                                    placeholder="Q₁"
+                                    step="any"
+                                >
+                            </td>
+
+                            <td>
+                                <button
+                                    class="delete-btn"
+                                    onclick="removeArticle(this)"
+                                >
+                                    ×
+                                </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+            <div class="calculator-actions">
+
+                <button
+                    class="primary-btn calculate-btn"
+                    onclick="calculateIndex()"
+                >
+                    Calculate Index Numbers →
+                </button>
+
+                <button
+                    class="secondary-btn"
+                    onclick="resetCalculator()"
+                >
+                    Reset
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESULTS -->
+        <section id="resultsSection" class="results-section hidden">
+
+            <div class="section-heading">
+
+                <p class="eyebrow">RESULTS</p>
+
+                <h2>
+                    Your Index Numbers
+                </h2>
+
+                <p>
+                    Here are the results calculated from your data.
+                </p>
+
+            </div>
+
+
+            <!-- RESULT CARDS -->
+            <div class="results-grid">
+
+                <div class="result-card">
+
+                    <span class="result-label">
+                        Laspeyres
+                    </span>
+
+                    <strong id="laspeyresResult">
+                        —
+                    </strong>
+
+                    <small>
+                        Base-year quantities
+                    </small>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <span class="result-label">
+                        Paasche
+                    </span>
+
+                    <strong id="paascheResult">
+                        —
+                    </strong>
+
+                    <small>
+                        Current-year quantities
+                    </small>
+
+                </div>
+
+
+                <div class="result-card featured-result">
+
+                    <span class="result-label">
+                        Fisher
+                    </span>
+
+                    <strong id="fisherResult">
+                        —
+                    </strong>
+
+                    <small>
+                        Ideal index
+                    </small>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <span class="result-label">
+                        Marshall–Edgeworth
+                    </span>
+
+                    <strong id="marshallResult">
+                        —
+                    </strong>
+
+                    <small>
+                        Average quantities
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- CALCULATION TABLE -->
+            <div class="calculation-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h2>Calculation table</h2>
+
+                        <p>
+                            Intermediate values used in the formulas.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table id="calculationTable">
+
+                        <thead>
+
+                            <tr>
+                                <th>Article</th>
+                                <th>P₀Q₀</th>
+                                <th>P₁Q₀</th>
+                                <th>P₀Q₁</th>
+                                <th>P₁Q₁</th>
+                                <th>P₁(Q₀+Q₁)</th>
+                                <th>P₀(Q₀+Q₁)</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="calculationRows">
+                        </tbody>
+
+                        <tfoot id="calculationTotals">
+                        </tfoot>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP BY STEP -->
+            <div class="solution-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <p class="eyebrow">UNDERSTAND</p>
+
+                        <h2>
+                            Step-by-step solution
+                        </h2>
+                    </div>
+
+                </div>
+
+                <div id="solutionContent">
+                </div>
+
+            </div>
+
+
+            <!-- RESULT ACTIONS -->
+            <div class="result-actions">
+
+                <button
+                    class="primary-btn"
+                    onclick="copyResults()"
+                >
+                    📋 Copy Results
+                </button>
+
+                <button
+                    class="secondary-btn"
+                    onclick="window.print()"
+                >
+                    🖨 Print
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div>
+                    <h3>IndexMaster</h3>
+
+                    <p>
+                        Learn. Calculate. Practice.
+                    </p>
+                </div>
+
+                <div class="footer-links">
+
+                    <a href="index.html">Home</a>
+                    <a href="calculator.html">Calculate</a>
+                    <a href="learn.html">Learn</a>
+                    <a href="practice.html">Practice</a>
+
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                © 2026 IndexMaster
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        function toggleTheme() {
+
+            document.body.classList.toggle("dark");
+
+            localStorage.setItem(
+                "theme",
+                document.body.classList.contains("dark")
+                    ? "dark"
+                    : "light"
+            );
+
+        }
+
+
+        window.onload = function () {
+
+            const savedTheme = localStorage.getItem("theme");
+
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark");
+            }
+
+        };
+
+    </script>
+
+</body>
+</html>
