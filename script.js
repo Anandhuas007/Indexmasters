@@ -637,3 +637,57 @@ Marshall–Edgeworth: ${marshall}
         });
 
 }
+// ==========================================
+// VISUAL COMPARISON
+// ==========================================
+
+function updateComparison(
+    laspeyres,
+    paasche,
+    fisher,
+    marshall
+) {
+
+    const values = [
+        laspeyres,
+        paasche,
+        fisher,
+        marshall
+    ];
+
+    const maximum = Math.max(...values);
+
+
+    // Display numbers
+
+    document.getElementById("chartLaspeyres")
+        .textContent = formatNumber(laspeyres);
+
+    document.getElementById("chartPaasche")
+        .textContent = formatNumber(paasche);
+
+    document.getElementById("chartFisher")
+        .textContent = formatNumber(fisher);
+
+    document.getElementById("chartMarshall")
+        .textContent = formatNumber(marshall);
+
+
+    // Calculate bar widths
+
+    document.getElementById("barLaspeyres")
+        .style.width =
+        `${(laspeyres / maximum) * 100}%`;
+
+    document.getElementById("barPaasche")
+        .style.width =
+        `${(paasche / maximum) * 100}%`;
+
+    document.getElementById("barFisher")
+        .style.width =
+        `${(fisher / maximum) * 100}%`;
+
+    document.getElementById("barMarshall")
+        .style.width =
+        `${(marshall / maximum) * 100}%`;
+}
